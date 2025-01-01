@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+{% load static %}
+{% load my_filter %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+<!-- ======= Header ======= -->
+{% if request.session.cust_id %}
+  
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Trolly Mate</span>
+      </a>
+      <a href="/toggle/"><i class="bi bi-list toggle-sidebar-btn"></i></a>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="GET" action="{% url 'searchbar' %}">
+        <input type="text" name="query"  placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        {% comment %} <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon--> {% endcomment %}
+
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="# " data-bs-toggle="dropdown">
+          <img src="{% static 'a' %}"   height="50px" alt="" class=" img fluid rounded-circle mx-2">{{request.session.cust_name}}
+          </a><!-- End Profile Iamge Icon -->
+        </li>
+          <li>
+           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+           <span class="d-none d-md-block ps-2">Cart</span></a>
+          
+          </li>
+          <li class="nav-item dropdown pe-3">
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/logout/" data-bs-toggle="dropdown">
+              <span class="d-none d-md-block ps-2 mx-2">Logout</span>
+            </a>
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+{% else %}
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+  <div class="d-flex align-items-center justify-content-between">
+    <a href="index.html" class="logo d-flex align-items-center">
+      <img src="{% static 'assets/img/logo.png' %}" alt="">
+      <span class="d-none d-lg-block">Trolly Mate
+      </span>
+    </a>
+    <i class="bi bi-list toggle-sidebar-btn"></i>
+  </div><!-- End Logo -->
+
+  <div class="search-bar">
+    <form class="search-form d-flex align-items-center" method="POST" action="#">
+      <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    </form>
+  </div><!-- End Search Bar -->
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+
+      <li class="nav-item d-block d-lg-none">
+        <a class="nav-link nav-icon search-bar-toggle " href="#">
+          <i class="bi bi-search"></i>
+        </a>
+      </li><!-- End Search Icon-->
+
+      <li class="nav-item dropdown pe-3">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{% url 'custlogin' %}" data-bs-toggle="dropdown">
+         <img src="{% static 'assets/img/download.png' %}" height=40 alt="Profile" class="rounded-circle">
+         <span class="d-none d-md-block ps-2">Guest</span>
+      </li>
+       <li class="nav-item dropdown pe-3">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{% url 'custlogin' %}" data-bs-toggle="dropdown">
+          
+          <span class="d-none d-md-block ps-2">Login</span>
+        </a><!-- End Profile Iamge Icon -->
+      </li>
+
+        </li>
+        <li class="nav-item dropdown pe-3">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/signup/" data-bs-toggle="dropdown">
+            <span class="d-none d-md-block ps-2">SignUp</span>
+          </a>
+      </li><!-- End Profile Nav -->
+
+    </ul>  
+  </nav><!-- End Icons Navigation -->
+
+</header>
+{% endif %}
+  <!-- ======= Sidebar ======= -->
+
+
+   
+
+  <div class="container-fluid my-5">
+    <div class="row">
+       
+      {% block cust_show %}
+
+      
+      {% endblock cust_show %}
+      <div class="col-lg-3">
+         <div class="row my-5">
+          {% for p in prods %}
+          <div class="card-group">
+            <div class="card">
+              <img src="{{p.image.url}}" class="rounded w-100 h-50"  alt="image">
+              <div class="card-body">
+                <h5 class="card-title">{{p.name|title}}</h5>
+                <p class="card-text">{{p.price|Currency}}</p>
+                <small class="text-body-secondary">{{p.des}}</small>
+              </div>
+              <form action="/#" method="post">
+                {% csrf_token %}
+              <div class="card-footer ">
+                <div class="card my-2">
+                  <small class="text-body-secondary">
+                    <input type="hidden" name="addcart" value="{{p.id}}">
+                    <input type="submit" class="btn btn-warning w-100" value="Add To Cart">
+                  </small>
+                </div>
+                <div class="card my-3">
+                  <small class="text-body-secondary-rounded">
+                    <input type="hidden" name="bynow" value="{{p.id}}">
+                    <input type="submit" class="btn btn-danger w-100" value="Buy Now">
+                  </small>
+                </div>
+                
+                
+              </div>
+            </div>
+          </div>
+
+
+          <form action="/#" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="addproduct" value="{{p.id}}">
+          <input type="submit" class="btn btn-secondary my-5 w-100" value="Add to Cart">
+          </form> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div class="col-sm-3" >
+            <div class="card rounded  w-100 h-75 ">
+              {% comment %} <img src="{{p.image.url}}" class="rounded w-100 h-75"  alt="image">
+              {% comment %} <img src="" class="card-img-top" alt="image" height="100px;" width="100px;"> {% endcomment %}
+              {% comment %} <div class="card-body">
+                <p class="card-text mx-1">{{p.price|Currency}}</p>
+                <h5 class="card-title position-absolute my-0 mx-4   top-75 start-50 translate-middle w-100 h-0 ">{{p.name|title}}</h5> {% endcomment %}
+                
+                
+               <div class="row">
+                {% if p|cart_status:request.session.cart %}
+                <form action="/#{{p.id}}" method="post" class="col-2">
+                  {% csrf_token %}
+                  <input type="hidden" name="addproduct" value="{{p.id}}">
+                  <input type="hidden" name="remove" value="True">
+                <input type="submit" class="btn btn-block btn-secondary" value="-">
+                </form>
+                <div class="text-center p-2 col-7">
+                      {{p|cart_quantity:request.session.cart}} in Cart
+                </div>
+                <form action="/#{{p.id}}" method="post" class="col-2">
+                  {% csrf_token %}
+                  <input type="hidden" name="addproduct" value="{{p.id}}">
+                <input type="submit" class="btn btn-block btn-secondary w-100" value="+">
+                </form>
+                {% else %}
+                 <form action="/#" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="addproduct" value="{{p.id}}">
+                <input type="submit" class="btn btn-secondary my-5 w-100" value="Add to Cart">
+                </form> 
+                 {% endif %} 
+              </div>
+               
+              </div>
+            </div>
+          </div> 
+          {% endfor %}
+        
+         </div>
+      </div>
+    </div>
+    </div>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

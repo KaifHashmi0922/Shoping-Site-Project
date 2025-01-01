@@ -1,0 +1,55 @@
+{% extends "admins/dashbord.html" %}
+{% load static %}
+
+
+      <h1>Dashboard</h1>
+      {% block show %}
+      <p>
+        <h3><i>Dashboard</i></h3>
+      <nav>
+        <ol class="breadcrumb">
+          {% comment %} <li class="breadcrumb-item"><a href="{% url 'home' %}"><i>Home Page</i></a></li> {% endcomment %}
+          <li class="breadcrumb-item"><a href="{% url 'dashbord' %}"><i>Product Management</i></a></li>
+          <li class="breadcrumb-item active"><i>View Companys/i></li> 
+        </ol>
+      </nav>
+   
+    </div><!-- End Page Title -->
+    <div class="container "><i>
+      <div class="col-lg-12">
+      <table class="table table-hover">
+        <thead>
+          
+          <tr>
+            
+            <th scope="col">ID</th>
+            <th scope="col">Company </th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in rec  %}
+          <tr>
+            <th scope="col">{{p.id}}</th>
+            <td>{{p.name}}</td>
+            <td>{{p.types}}
+            <td>{{p.c_info}}</td>
+            <td><img src="{{p.image.url}}" height="60" width="60"></td>
+            <td><a href="/admins/company_edit/{{p.id}}" class=" btn btn-warning">Edit</a></td>
+            <td><a href="/admins/company_delete/{{p.id}}" class="btn btn-danger">Delete</a></td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </i>
+    </div>
+
+  </main><!-- End #main -->
+</p>
+  {% endblock show %}
+ 

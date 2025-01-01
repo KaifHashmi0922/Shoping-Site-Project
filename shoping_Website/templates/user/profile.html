@@ -1,0 +1,274 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  
+    <title>Www.Trollymate.Com</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+  
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %} "rel="icon">
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  
+    <!-- Google Fonts -->
+    <link href="{% static 'https://fonts.gstatic.com' %}" rel="preconnect">
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' %}" rel="stylesheet">
+  
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+  
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  
+  </head>
+  
+    
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/.png" alt="">
+        <span class="d-none d-lg-block"><i>Trolly Mate</i></span>
+      </a>
+      
+    </div><!-- End Logo -->
+<!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        {% if  rec.image %}
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#">
+            <img src="{{rec.image.url}}" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block mx-4">{{rec.fname}} {{REC.lname}}</span>
+          </a>
+
+          {% else %}
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#">
+            <img src="{% static  'assets/img/guest.png' %}" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block mx-4">{{rec.fname}} {{REC.lname}}</span>
+          </a>
+          {% endif %}
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1><i>PROFILE</i></h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'index' %}"><i>HOME</i></a></li>
+          <li class="breadcrumb-item active"><i>PROFILE PAGE</i></li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-4">
+          {% if rec.image %}
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center  " style="height:485px" >
+              <img src="{{rec.image.url}}" alt="User_Image" class="sequi my-5 rounded-circle" style="height: 100px; width: 100px; object-fit: cover;">
+              <h2>{{rec.fname}} {{rec.lname}}</h2>
+            </div>
+          </div>
+          {% else %}
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center  " style="height:485px" >
+              <img src="{% static  'assets/img/guest.png' %}" alt="User_Image" class="sequi my-5 rounded-circle" style="height: 100px; width: 100px; object-fit: cover;">
+              <h2>{{rec.fname}} {{rec.lname}}</h2>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="col-xl-8">
+
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview"><i>PROFILE DETAILS</i></button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit"><i>EDIT PROFILE</i></button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                </li>
+              </ul>
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                  
+                 
+                  
+                  <div class="row my-3">
+                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                    <div class="col-lg-9 col-md-8">{{rec.fname}} {{rec.lname}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Phone</div>
+                    <div class="col-lg-9 col-md-8">{{rec.Phone}}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-9 col-md-8">{{rec.email}}</div>
+                  </div>
+                
+                </div>
+
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+                  <!-- Profile Edit Form -->
+                  <form>
+                    <div class="row mb-3">
+                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                      <div class="col-md-8 col-lg-9">
+                        {% if rec.image %}
+                        <img src="{{rec.image.url}}" alt="Profile">
+                        <div class="pt-2 ">
+                          <a href="upload/{{rec.id}}" class="btn btn-primary btn-sm mx-3" title="Upload new profile image">
+                            <input type="file" name="img">
+                            <i class="bi bi-upload"></i></a>
+                          <a href="/delete_img/{{rec.id}}" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                        </div>
+                        {% else %}
+                        <img src="{% static  'assets/img/guest.png' %}" alt="Profile">
+                        <div class="pt-2">
+                          <a href="/delete_img/{{rec.id}}" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                          <form method="post">
+                            <input type="file" class="w-25 h-25 mx-4" name="nimage">
+                        </div>
+                      </div>
+                      {% endif %}
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="fullName" type="text" class="form-control" id="fullName"  name="nfname" value={{rec.fname}}>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="fullName" type="text" class="form-control" id="fullName" name="nlname" value={{rec.lname}}>
+                      </div>
+                    </div>
+
+
+                    <div class="row mb-3">
+                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="phone" type="text" class="form-control" id="Phone" name="nphone" value={{rec.Phone}}>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="email" type="email" class="form-control" id="Email" name="nemail"  value={{rec.email}}>
+                      </div>
+                    </div>
+                    <p class="mx-5">
+                      <a href="<button type="submit" class="btn btn-primary mx-5 my-5">Save Changes</button>
+                    
+                      <a href="{% url 'logout' %}" >
+                        <img src="{% static 'assets/img/logout.png' %}" alt="Logout" style="width: 40px; height: 40px; object-fit: contain;">
+                      </a>
+                    <p>
+                   
+                  </form><!-- End Profile Edit Form -->
+
+                </div>
+                <div class="tab-pane fade pt-3" id="profile-change-password">
+                  <!-- Change Password Form -->
+                  <form method="POST">
+
+                    <div class="row mb-3">
+                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="cpass" type="password" class="form-control" id="currentPassword" >
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="npass" type="password" class="form-control" id="newPass" >
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="rnpass" type="password" class="form-control" id="rePass" >
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-outline-primary"><a href="/password_edit/{{rec.id}}">Change Password</button></a>
+                    </div>
+                  </form><!-- End Change Password Form -->
+
+                </div>
+                <!-- <a href="/password_edit/{{rec.id}}"> -->
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
+

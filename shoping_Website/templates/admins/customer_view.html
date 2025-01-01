@@ -1,0 +1,57 @@
+{% extends "admins/dashbord.html" %}
+{% load static %}
+
+      {% block show %}
+      <p>
+        <h3><i>Dashboard</i></h3>
+      <nav>
+        <ol class="breadcrumb">
+          {% comment %} <li class="breadcrumb-item"><a href="{% url 'home' %}"><i>Home Page</i></a></li> {% endcomment %}
+          <li class="breadcrumb-item"><a href="{% url 'dashbord' %}"><i>Product Management</i></a></li>
+          <li class="breadcrumb-item active"><i> All  Custmers </i></li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <div class="container"><i>
+      <table class="table table-hover">
+        <thead>
+          
+          <tr>
+            
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Father</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Password</th>
+            <th scope="col">Image</th>
+            {% comment %} <th scope="col">Update</th>
+            <th scope="col">Delete</th> {% endcomment %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in rec  %}
+          <tr>
+            <th scope="row">{{p.id}}</th>
+            <td>{{p.fname}} {{p.lname}}</td>
+           
+            <td>{{p.father}}</td>
+            <td>{{p.email}}</td>
+            <td>{{p.Phone}}</td>
+            <td>{{p.pass1}}</td>
+            <td><img src="{{p.image.url}}" height="60" width="60"></td>
+            {% comment %} <td><a href="/editproduct/{{p.id}}" class=" btn btn-outline-warning">Edit</a></td>
+            <td><a href="/deleteproduct/{{p.id}}" class="btn btn-outline-danger">Delete</a></td> {% endcomment %}
+          </tr>
+          {% endfor %} 
+          
+        </tbody>
+      </table>
+    </i>
+    </div>
+
+  </main><!-- End #main -->
+</p>
+{% endblock show %}
+
+  <!-- ======= Footer ======= -

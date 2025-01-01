@@ -1,0 +1,66 @@
+{% extends "admins/dashbord.html" %}
+{% load static %}
+
+{% block show %}
+<p>
+    
+  <h3><i>Dashboard</i></h3>
+      <nav>
+        <ol class="breadcrumb">
+          {% comment %} <li class="breadcrumb-item"><a href="{% url 'home' %}"><i>Home Page</i></a></li> {% endcomment %}
+          <li class="breadcrumb-item"><a href="{% url 'dashbord' %}"><i>Product Management</i></a></li>
+          <li class="breadcrumb-item active"><i> Edit Company </i></li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+   
+    <div class="container">
+       <div class="row">
+        <div class="col-lg-5 offset-3">
+          <div class="card mb-3">
+
+            <div class="card-body">
+
+              <div class="pt-4 pb-2">
+                <h5 class="card-title text-center pb-0 fs-4"><i>Update Company</h5>
+              </div>
+
+              <form class="row g-3 needs-validation" method="post" enctype="multipart/form-data"  >
+                {% csrf_token %}
+                <div class="col-12">
+                  <label for="yourName" class="form-label">Name</label>
+                  <input type="text" name="name"   value="{{rec.name}}" class="form-control" required>
+                </div>
+                <div class="col-12">
+                  <label for="yourName" class="form-label">Category</label>
+                  <select class="form-select" aria-label="Default select example" name="category" required>
+                    <option selected>Select</option>
+                    {% for c in cats %}
+                    <option value="{{c.id}}">{{c.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="yourName" class="form-label">Description</label>
+                  <textarea class="form-control" style="height: 100px"   name="ptname"  value="{{rec.c_info}}" required></textarea>
+                </div>
+                <p> Current Image</p>
+                <p><img src="{{rec.image.url}}" height="90%" width="50%"></p>
+                <div class="col-12">
+                  <label for="yourName" class="form-label">Image</label>
+                  <input type="File" name="image"  value="{{rec.image.url}}" class="form-control"  required>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-danger  mx-5 my-3 w-25" type="submit"><i>Cancel</i></button>
+                  <button class="btn btn-primary mx-5 my-3 w-25" type="submit"><i>Save </i></button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+       </div>
+    </div>
+  </p>
+    {% endblock show %}
+  

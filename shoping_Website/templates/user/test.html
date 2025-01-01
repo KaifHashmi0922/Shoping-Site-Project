@@ -1,0 +1,44 @@
+{% extends "user/index.html" %}
+{% block cust_show %}
+<p>
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <div class="btn-group">
+        <button type="button" class="btn btn-outline-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Categorys
+        </button>
+        {% for d in cats %}
+        <ul id="components-nav" class="dropdown-item d-flex-col">
+          <li>
+            <a href="/shoping/{{d.id}}" class="dropdown-item">
+              <i class="bi bi-circle"></i> <span>{{d.name}}<br></span>
+              {% comment %} {% endcomment %}
+            </a>
+          </li>
+        </ul>
+        {% endfor %}
+      </div>
+    </ul>
+        
+      
+      
+
+      {% comment %} <li class="nav-item">
+        <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Categorys</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        {% for d in cats %}
+        <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/shoping/{{d.id}}" class="active">
+              <i class="bi bi-circle"></i><span>{{d.name}}</span>
+
+            </a>
+          </li>
+        </ul>
+        {% endfor %}
+    </li>  {% endcomment %}
+</aside>
+</p>
+{% endblock cust_show %}
